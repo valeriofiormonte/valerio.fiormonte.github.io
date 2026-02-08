@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progetto 1 - Il Tuo Nome</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        .project-hero {
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--color-sage) 0%, var(--color-terracotta) 100%);
+            position: relative;
+            overflow: hidden;
+            margin-top: 80px;
+        }
+
+        .project-hero-content {
+            text-align: center;
+            color: var(--color-white);
+            max-width: 900px;
+            padding: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .project-category {
+            display: inline-block;
+            padding: 0.5rem 1.25rem;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            border-radius: 50px;
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .project-hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 600;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.8s ease-out 0.3s both;
+        }
+
+        .project-hero-description {
+            font-size: 1.35rem;
+            line-height: 1.7;
+            opacity: 0.95;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        .project-meta {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            background: var(--color-white);
+        }
+
+        .meta-item h3 {
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-sage);
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+        }
+
+        .meta-item p {
+            font-size: 1.125rem;
+            color: var(--color-charcoal);
+            line-height: 1.6;
+        }
+
+        .project-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: var(--space-xl) 2rem;
+        }
+
+        .content-section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .content-section h2 {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--color-charcoal);
+            margin-bottom: var(--space-md);
+        }
+
+        .content-section p {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            color: var(--color-warm-grey);
+            margin-bottom: 1.5rem;
+        }
+
+        .content-section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .content-section li {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            color: var(--color-warm-grey);
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .content-section li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--color-sage);
+            font-weight: 600;
+        }
+
+        .project-image-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin: var(--space-lg) 0;
+        }
+
+        .project-image {
+            width: 100%;
+            aspect-ratio: 16/10;
+            background: linear-gradient(135deg, var(--color-light-grey) 0%, var(--color-sage) 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            color: var(--color-white);
+            opacity: 0.8;
+        }
+
+        .project-image.full {
+            grid-column: 1 / -1;
+            aspect-ratio: 21/9;
+        }
+
+        .project-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: var(--space-lg) 2rem;
+            border-top: 1px solid var(--color-light-grey);
+        }
+
+        .nav-project {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+            color: var(--color-charcoal);
+            font-size: 1rem;
+            font-weight: 500;
+            transition: var(--transition-smooth);
+        }
+
+        .nav-project:hover {
+            color: var(--color-sage);
+            transform: translateX(-5px);
+        }
+
+        .nav-project.next:hover {
+            transform: translateX(5px);
+        }
+
+        .nav-project svg {
+            transition: transform 0.3s ease;
+        }
+
+        .back-home {
+            padding: 1rem 2rem;
+            background: var(--color-charcoal);
+            color: var(--color-white);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: var(--transition-smooth);
+        }
+
+        .back-home:hover {
+            background: var(--color-sage);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .project-meta {
+                grid-template-columns: 1fr;
+            }
+
+            .project-image-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-nav {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav-container">
+        <div class="nav-content">
+            <a href="index.html" class="logo">Il Tuo Nome</a>
+            <div class="nav-links">
+                <a href="index.html#about" class="nav-link">Chi Sono</a>
+                <a href="index.html#work" class="nav-link">Lavori</a>
+                <a href="index.html#contact" class="nav-link">Contatti</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="project-hero">
+        <div class="project-hero-content">
+            <div class="project-category">Design & Development</div>
+            <h1>Nome Progetto 1</h1>
+            <p class="project-hero-description">
+                Una piattaforma innovativa per connettere creativi e aziende, 
+                ridefinendo l'esperienza del networking professionale.
+            </p>
+        </div>
+    </section>
+
+    <section class="project-meta">
+        <div class="meta-item">
+            <h3>Cliente</h3>
+            <p>Nome Cliente / Personale</p>
+        </div>
+        <div class="meta-item">
+            <h3>Anno</h3>
+            <p>2025</p>
+        </div>
+        <div class="meta-item">
+            <h3>Ruolo</h3>
+            <p>Lead Designer & Frontend Developer</p>
+        </div>
+        <div class="meta-item">
+            <h3>Tecnologie</h3>
+            <p>React, Node.js, Figma, WebGL</p>
+        </div>
+    </section>
+
+    <div class="project-content">
+        <section class="content-section">
+            <h2>La Sfida</h2>
+            <p>
+                Il cliente aveva bisogno di una soluzione che potesse rivoluzionare il modo in cui i 
+                professionisti creativi si connettono con potenziali collaboratori e clienti. 
+                L'obiettivo era creare un'esperienza utente fluida e coinvolgente che si distinguesse 
+                dalle piattaforme tradizionali.
+            </p>
+            <p>
+                Le principali sfide includevano la creazione di un sistema di matching intelligente, 
+                un'interfaccia intuitiva per utenti di diverse generazioni, e prestazioni ottimali 
+                anche con grandi volumi di dati.
+            </p>
+        </section>
+
+        <div class="project-image-grid">
+            <div class="project-image full">Immagine panoramica del progetto</div>
+        </div>
+
+        <section class="content-section">
+            <h2>Il Processo</h2>
+            <p>
+                Ho iniziato con una fase di ricerca approfondita, intervistando utenti target e 
+                analizzando competitor. Questo ha informato la creazione di personas dettagliate e 
+                user journey maps che hanno guidato tutte le decisioni di design successive.
+            </p>
+            <ul>
+                <li>Research e discovery: interviste con 50+ utenti e analisi competitiva</li>
+                <li>Design system: creazione di un sistema di componenti scalabile e coerente</li>
+                <li>Prototipazione: iterazioni rapide testate con utenti reali</li>
+                <li>Sviluppo: implementazione con focus su performance e accessibilità</li>
+                <li>Testing e ottimizzazione: A/B testing e miglioramenti continui</li>
+            </ul>
+        </section>
+
+        <div class="project-image-grid">
+            <div class="project-image">Dettaglio interfaccia 1</div>
+            <div class="project-image">Dettaglio interfaccia 2</div>
+        </div>
+
+        <section class="content-section">
+            <h2>La Soluzione</h2>
+            <p>
+                La piattaforma finale presenta un'interfaccia pulita e moderna che guida gli utenti 
+                attraverso un processo di onboarding personalizzato. Un algoritmo di matching 
+                intelligente suggerisce connessioni rilevanti basate su competenze, interessi e 
+                obiettivi professionali.
+            </p>
+            <p>
+                Ho implementato micro-interazioni sofisticate che rendono l'esperienza piacevole 
+                e memorabile, mentre un sistema di design modulare garantisce coerenza e facilità 
+                di manutenzione. Le performance sono state ottimizzate per garantire tempi di 
+                caricamento rapidi anche su dispositivi meno potenti.
+            </p>
+        </section>
+
+        <section class="content-section">
+            <h2>Risultati</h2>
+            <p>
+                Il progetto ha superato tutte le aspettative, con metriche che hanno dimostrato 
+                un impatto significativo:
+            </p>
+            <ul>
+                <li>+150% di engagement degli utenti nei primi 3 mesi</li>
+                <li>95% di feedback positivi sulla user experience</li>
+                <li>Riduzione del 60% del tempo necessario per completare il profilo</li>
+                <li>Riconoscimento con il premio "Best UX Design 2025" nella categoria Networking</li>
+            </ul>
+        </section>
+
+        <div class="project-image-grid">
+            <div class="project-image full">Mockup finale della piattaforma</div>
+        </div>
+    </div>
+
+    <nav class="project-nav">
+        <a href="index.html#work" class="nav-project">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M16 10H4M4 10L9 15M4 10L9 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <span>Tutti i progetti</span>
+        </a>
+        <a href="index.html" class="back-home">Torna alla Home</a>
+        <a href="work2.html" class="nav-project next">
+            <span>Progetto successivo</span>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+        </a>
+    </nav>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2026 Il Tuo Nome. Tutti i diritti riservati.</p>
+            <div class="footer-links">
+                <a href="index.html#about">Chi Sono</a>
+                <a href="index.html#work">Lavori</a>
+                <a href="index.html#contact">Contatti</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

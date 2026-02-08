@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progetto 3 - Il Tuo Nome</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        .project-hero {
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--color-sage-dark) 0%, var(--color-charcoal) 100%);
+            position: relative;
+            overflow: hidden;
+            margin-top: 80px;
+        }
+
+        .project-hero-content {
+            text-align: center;
+            color: var(--color-white);
+            max-width: 900px;
+            padding: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .project-category {
+            display: inline-block;
+            padding: 0.5rem 1.25rem;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            border-radius: 50px;
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .project-hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 600;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.8s ease-out 0.3s both;
+        }
+
+        .project-hero-description {
+            font-size: 1.35rem;
+            line-height: 1.7;
+            opacity: 0.95;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        .project-meta {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            background: var(--color-white);
+        }
+
+        .meta-item h3 {
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-sage);
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+        }
+
+        .meta-item p {
+            font-size: 1.125rem;
+            color: var(--color-charcoal);
+            line-height: 1.6;
+        }
+
+        .project-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: var(--space-xl) 2rem;
+        }
+
+        .content-section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .content-section h2 {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--color-charcoal);
+            margin-bottom: var(--space-md);
+        }
+
+        .content-section p {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            color: var(--color-warm-grey);
+            margin-bottom: 1.5rem;
+        }
+
+        .content-section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .content-section li {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            color: var(--color-warm-grey);
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .content-section li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--color-sage);
+            font-weight: 600;
+        }
+
+        .project-image-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin: var(--space-lg) 0;
+        }
+
+        .project-image {
+            width: 100%;
+            aspect-ratio: 16/10;
+            background: linear-gradient(135deg, var(--color-charcoal) 0%, var(--color-sage) 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            color: var(--color-white);
+            opacity: 0.8;
+        }
+
+        .project-image.full {
+            grid-column: 1 / -1;
+            aspect-ratio: 21/9;
+        }
+
+        .project-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: var(--space-lg) 2rem;
+            border-top: 1px solid var(--color-light-grey);
+        }
+
+        .nav-project {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+            color: var(--color-charcoal);
+            font-size: 1rem;
+            font-weight: 500;
+            transition: var(--transition-smooth);
+        }
+
+        .nav-project:hover {
+            color: var(--color-sage);
+            transform: translateX(-5px);
+        }
+
+        .nav-project.next:hover {
+            transform: translateX(5px);
+        }
+
+        .nav-project svg {
+            transition: transform 0.3s ease;
+        }
+
+        .back-home {
+            padding: 1rem 2rem;
+            background: var(--color-charcoal);
+            color: var(--color-white);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: var(--transition-smooth);
+        }
+
+        .back-home:hover {
+            background: var(--color-sage);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .project-meta {
+                grid-template-columns: 1fr;
+            }
+
+            .project-image-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-nav {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav-container">
+        <div class="nav-content">
+            <a href="index.html" class="logo">Il Tuo Nome</a>
+            <div class="nav-links">
+                <a href="index.html#about" class="nav-link">Chi Sono</a>
+                <a href="index.html#work" class="nav-link">Lavori</a>
+                <a href="index.html#contact" class="nav-link">Contatti</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="project-hero">
+        <div class="project-hero-content">
+            <div class="project-category">UI/UX & Mobile</div>
+            <h1>Nome Progetto 3</h1>
+            <p class="project-hero-description">
+                Progettazione e sviluppo di un'app mobile che semplifica 
+                la gestione del benessere personale quotidiano.
+            </p>
+        </div>
+    </section>
+
+    <section class="project-meta">
+        <div class="meta-item">
+            <h3>Cliente</h3>
+            <p>WellLife App</p>
+        </div>
+        <div class="meta-item">
+            <h3>Anno</h3>
+            <p>2025</p>
+        </div>
+        <div class="meta-item">
+            <h3>Ruolo</h3>
+            <p>UI/UX Lead & Product Designer</p>
+        </div>
+        <div class="meta-item">
+            <h3>Piattaforme</h3>
+            <p>iOS, Android, Web App</p>
+        </div>
+    </section>
+
+    <div class="project-content">
+        <section class="content-section">
+            <h2>Il Problema</h2>
+            <p>
+                Nel mercato affollato delle app per il benessere, la maggior parte delle soluzioni 
+                risulta troppo complessa o richiede un impegno eccessivo da parte degli utenti. 
+                WellLife voleva creare un'esperienza diversa: semplice, accessibile e sostenibile 
+                nel lungo termine.
+            </p>
+            <p>
+                La sfida principale era progettare un'interfaccia che motivasse gli utenti senza 
+                sovraccaricarli di informazioni, rendendo il tracciamento del benessere un'abitudine 
+                naturale piuttosto che un compito da completare.
+            </p>
+        </section>
+
+        <div class="project-image-grid">
+            <div class="project-image full">Dashboard principale dell'app</div>
+        </div>
+
+        <section class="content-section">
+            <h2>Ricerca e Discovery</h2>
+            <p>
+                Ho condotto interviste approfondite con 60 utenti target, analizzando le loro 
+                routine quotidiane, frustrazioni con app esistenti e aspirazioni di benessere. 
+                Questo ha rivelato insight cruciali sul rapporto delle persone con la tecnologia 
+                e il self-care.
+            </p>
+            <ul>
+                <li>Interviste qualitative con utenti di diverse fasce d'età e background</li>
+                <li>Diary studies per comprendere i pattern comportamentali nel tempo</li>
+                <li>Analisi competitiva di 15+ app nel settore wellness</li>
+                <li>Creazione di personas e journey maps dettagliate</li>
+                <li>Card sorting e tree testing per l'architettura informativa</li>
+            </ul>
+        </section>
+
+        <div class="project-image-grid">
+            <div class="project-image">Wireframe e user flow</div>
+            <div class="project-image">Prototipo interattivo</div>
+        </div>
+
+        <section class="content-section">
+            <h2>Design System e Interfaccia</h2>
+            <p>
+                Ho creato un design system completo che bilancia semplicità visiva e profondità 
+                funzionale. L'interfaccia utilizza micro-interazioni delicate che forniscono 
+                feedback immediato senza essere invasive. La palette di colori si ispira alla 
+                natura, creando un'atmosfera calma e accogliente.
+            </p>
+            <p>
+                Particolare attenzione è stata dedicata all'accessibilità, assicurando che 
+                l'app fosse utilizzabile da persone con diverse abilità. Ogni componente è 
+                stato testato per conformità WCAG 2.1 livello AA, con opzioni di personalizzazione 
+                per dimensioni del testo e contrasto.
+            </p>
+        </section>
+
+        <section class="content-section">
+            <h2>Funzionalità Chiave</h2>
+            <ul>
+                <li>Check-in giornaliero semplificato di 30 secondi per tracciare mood e energia</li>
+                <li>Suggerimenti personalizzati basati su AI per attività di benessere</li>
+                <li>Visualizzazioni intuitive dei progressi con insights azionabili</li>
+                <li>Integrazione con wearable e app di terze parti</li>
+                <li>Community features per supporto peer-to-peer opzionale</li>
+                <li>Modalità offline completa per privacy e accessibilità</li>
+            </ul>
+        </section>
+
+        <div class="project-image-grid">
+            <div class="project-image">Schermate funzionalità principali</div>
+            <div class="project-image">Varianti responsive</div>
+        </div>
+
+        <section class="content-section">
+            <h2>Testing e Iterazione</h2>
+            <p>
+                Il processo di design è stato altamente iterativo, con 5 round di testing 
+                utente prima del lancio. Ogni round ha portato a miglioramenti significativi 
+                nell'usabilità e nell'engagement. Ho utilizzato A/B testing per validare 
+                decisioni chiave su onboarding, notifiche e gamification.
+            </p>
+        </section>
+
+        <section class="content-section">
+            <h2>Risultati e Impatto</h2>
+            <p>
+                L'app ha superato ogni aspettativa, stabilendo nuovi standard nel settore:
+            </p>
+            <ul>
+                <li>4.8/5 stelle su App Store con oltre 50,000 recensioni</li>
+                <li>Retention rate del 78% dopo 30 giorni (media settore: 25%)</li>
+                <li>Featured da Apple come "App of the Day" in 47 paesi</li>
+                <li>1.5 milioni di download nei primi 6 mesi</li>
+                <li>Premio "Best Health & Wellness App 2025" agli App Design Awards</li>
+                <li>Case study pubblicato su UX Collective e Nielsen Norman Group</li>
+            </ul>
+        </section>
+
+        <div class="project-image-grid">
+            <div class="project-image full">Mockup dell'app su diversi dispositivi</div>
+        </div>
+    </div>
+
+    <nav class="project-nav">
+        <a href="work2.html" class="nav-project">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M16 10H4M4 10L9 15M4 10L9 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <span>Progetto precedente</span>
+        </a>
+        <a href="index.html" class="back-home">Torna alla Home</a>
+        <a href="index.html#work" class="nav-project next">
+            <span>Tutti i progetti</span>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+        </a>
+    </nav>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2026 Il Tuo Nome. Tutti i diritti riservati.</p>
+            <div class="footer-links">
+                <a href="index.html#about">Chi Sono</a>
+                <a href="index.html#work">Lavori</a>
+                <a href="index.html#contact">Contatti</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

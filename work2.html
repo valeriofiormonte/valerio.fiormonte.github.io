@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progetto 2 - Il Tuo Nome</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        .project-hero {
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--color-terracotta) 0%, var(--color-sage-dark) 100%);
+            position: relative;
+            overflow: hidden;
+            margin-top: 80px;
+        }
+
+        .project-hero-content {
+            text-align: center;
+            color: var(--color-white);
+            max-width: 900px;
+            padding: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .project-category {
+            display: inline-block;
+            padding: 0.5rem 1.25rem;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            border-radius: 50px;
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .project-hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 600;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.8s ease-out 0.3s both;
+        }
+
+        .project-hero-description {
+            font-size: 1.35rem;
+            line-height: 1.7;
+            opacity: 0.95;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        .project-meta {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            background: var(--color-white);
+        }
+
+        .meta-item h3 {
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-sage);
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+        }
+
+        .meta-item p {
+            font-size: 1.125rem;
+            color: var(--color-charcoal);
+            line-height: 1.6;
+        }
+
+        .project-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: var(--space-xl) 2rem;
+        }
+
+        .content-section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .content-section h2 {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--color-charcoal);
+            margin-bottom: var(--space-md);
+        }
+
+        .content-section p {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            color: var(--color-warm-grey);
+            margin-bottom: 1.5rem;
+        }
+
+        .content-section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .content-section li {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            color: var(--color-warm-grey);
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .content-section li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--color-sage);
+            font-weight: 600;
+        }
+
+        .project-image-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin: var(--space-lg) 0;
+        }
+
+        .project-image {
+            width: 100%;
+            aspect-ratio: 16/10;
+            background: linear-gradient(135deg, var(--color-terracotta) 0%, var(--color-sage-dark) 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            color: var(--color-white);
+            opacity: 0.8;
+        }
+
+        .project-image.full {
+            grid-column: 1 / -1;
+            aspect-ratio: 21/9;
+        }
+
+        .project-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: var(--space-lg) 2rem;
+            border-top: 1px solid var(--color-light-grey);
+        }
+
+        .nav-project {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+            color: var(--color-charcoal);
+            font-size: 1rem;
+            font-weight: 500;
+            transition: var(--transition-smooth);
+        }
+
+        .nav-project:hover {
+            color: var(--color-sage);
+            transform: translateX(-5px);
+        }
+
+        .nav-project.next:hover {
+            transform: translateX(5px);
+        }
+
+        .nav-project svg {
+            transition: transform 0.3s ease;
+        }
+
+        .back-home {
+            padding: 1rem 2rem;
+            background: var(--color-charcoal);
+            color: var(--color-white);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: var(--transition-smooth);
+        }
+
+        .back-home:hover {
+            background: var(--color-sage);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .project-meta {
+                grid-template-columns: 1fr;
+            }
+
+            .project-image-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-nav {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav-container">
+        <div class="nav-content">
+            <a href="index.html" class="logo">Il Tuo Nome</a>
+            <div class="nav-links">
+                <a href="index.html#about" class="nav-link">Chi Sono</a>
+                <a href="index.html#work" class="nav-link">Lavori</a>
+                <a href="index.html#contact" class="nav-link">Contatti</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="project-hero">
+        <div class="project-hero-content">
+            <div class="project-category">Branding & Strategy</div>
+            <h1>Nome Progetto 2</h1>
+            <p class="project-hero-description">
+                Rebranding completo e strategia di comunicazione per un brand 
+                emergente nel settore della sostenibilità.
+            </p>
+        </div>
+    </section>
+
+    <section class="project-meta">
+        <div class="meta-item">
+            <h3>Cliente</h3>
+            <p>EcoVision Startup</p>
+        </div>
+        <div class="meta-item">
+            <h3>Anno</h3>
+            <p>2024-2025</p>
+        </div>
+        <div class="meta-item">
+            <h3>Ruolo</h3>
+            <p>Creative Director & Brand Strategist</p>
+        </div>
+        <div class="meta-item">
+            <h3>Deliverables</h3>
+            <p>Brand Identity, Guidelines, Marketing Assets</p>
+        </div>
+    </section>
+
+    <div class="project-content">
+        <section class="content-section">
+            <h2>Il Contesto</h2>
+            <p>
+                EcoVision è una startup innovativa nel settore della sostenibilità ambientale, 
+                con l'obiettivo di rendere accessibili soluzioni eco-friendly per le aziende di 
+                ogni dimensione. Nonostante un prodotto solido e una visione chiara, il brand 
+                mancava di un'identità visiva forte e di una strategia di comunicazione coerente.
+            </p>
+            <p>
+                Il mio compito era creare un sistema di brand completo che riflettesse i valori 
+                di innovazione e sostenibilità dell'azienda, distinguendola in un mercato 
+                sempre più affollato.
+            </p>
+        </section>
+
+        <div class="project-image-grid">
+            <div class="project-image full">Logo e identità visiva principale</div>
+        </div>
+
+        <section class="content-section">
+            <h2>Strategia e Ricerca</h2>
+            <p>
+                Il progetto è iniziato con workshop strategici con il team di EcoVision per 
+                definire valori fondamentali, posizionamento e personalità del brand. 
+                Ho condotto un'analisi approfondita del settore e dei competitor per 
+                identificare opportunità di differenziazione.
+            </p>
+            <ul>
+                <li>Brand audit e analisi competitiva del mercato</li>
+                <li>Workshop con stakeholder per definire vision e mission</li>
+                <li>Creazione di brand positioning e tone of voice</li>
+                <li>Sviluppo di moodboard e direzione visiva</li>
+                <li>Testing con focus group di potenziali clienti</li>
+            </ul>
+        </section>
+
+        <div class="project-image-grid">
+            <div class="project-image">Palette colori e tipografia</div>
+            <div class="project-image">Elementi grafici del brand</div>
+        </div>
+
+        <section class="content-section">
+            <h2>Identità Visiva</h2>
+            <p>
+                L'identità visiva si basa su un equilibrio tra modernità e natura. Il logo 
+                combina forme geometriche pulite con elementi organici, simboleggiando 
+                l'armonia tra tecnologia e ambiente. La palette di colori utilizza tonalità 
+                naturali e terrene, evitando i cliché del verde intenso spesso associato 
+                all'ecologia.
+            </p>
+            <p>
+                Ho creato un sistema modulare di elementi grafici che possono essere 
+                combinati in infinite variazioni, garantendo flessibilità mantenendo 
+                coerenza. Il brand system include tutto: dal biglietto da visita al 
+                packaging, dalle presentazioni ai social media templates.
+            </p>
+        </section>
+
+        <section class="content-section">
+            <h2>Impatto e Risultati</h2>
+            <p>
+                Il nuovo brand ha trasformato completamente la percezione di EcoVision 
+                nel mercato:
+            </p>
+            <ul>
+                <li>+200% di riconoscimento del brand nei primi 6 mesi</li>
+                <li>Aumento del 180% nelle richieste di partnership da aziende Fortune 500</li>
+                <li>Premio "Best Sustainable Brand Identity 2025" all'International Design Awards</li>
+                <li>Featured su Design Week, Branding Magazine e Creative Review</li>
+                <li>Investimento Serie A di €5M, citando il brand come fattore chiave</li>
+            </ul>
+        </section>
+
+        <div class="project-image-grid">
+            <div class="project-image full">Applicazioni del brand su diversi touchpoint</div>
+        </div>
+    </div>
+
+    <nav class="project-nav">
+        <a href="work1.html" class="nav-project">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M16 10H4M4 10L9 15M4 10L9 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <span>Progetto precedente</span>
+        </a>
+        <a href="index.html" class="back-home">Torna alla Home</a>
+        <a href="work3.html" class="nav-project next">
+            <span>Progetto successivo</span>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+        </a>
+    </nav>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2026 Il Tuo Nome. Tutti i diritti riservati.</p>
+            <div class="footer-links">
+                <a href="index.html#about">Chi Sono</a>
+                <a href="index.html#work">Lavori</a>
+                <a href="index.html#contact">Contatti</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
